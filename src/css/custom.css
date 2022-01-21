@@ -1,0 +1,11 @@
+.todos{
+    width: 800px;
+    margin: 30px auto 0 ;
+}
+.todo-row:nth-child(odd){
+    background: lightgray;
+}
+.todo-text{
+    max-width: 350px;
+    word-break: break-all;
+}

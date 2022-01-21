@@ -36,11 +36,11 @@ const TodoItem = ({it}) => {
             <div>
                 {
                     isEdit
-                        ? <Button text={"Save"} color={"yellow"} onClick={SaveTodo}/>
-                        : <Button text={"Edit"} color={"green"} onClick={() => setIsEdit(true)}/>
+                        ? <Button className="bg-yellow-400 hover:bg-yellow-500 active:bg-yellow-600" text={"Save"} color={"yellow"} onClick={SaveTodo}/>
+                        : <Button className="bg-green-400 hover:bg-green-500 active:bg-green-600" text={"Edit"} color={"green"} onClick={() => setIsEdit(true)}/>
 
                 }
-                <Button text={"Delete"} color={"red"}
+                <Button className="bg-red-400 hover:bg-red-500 active:bg-red-600" text={"Delete"} color={"red"}
                         onClick={() => dispatch({type: actionTypes.DELETE_TODO, id: it.id})}/>
 
             </div>

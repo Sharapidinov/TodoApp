@@ -3,6 +3,7 @@ import {actionTypes} from "../../context/TodoCntext"
 import {TodoContext} from "../../context/TodoCntext";
 import TodoItem from "../../component/TodoItem";
 import Button from "../../component/Button";
+import {nanoid} from "nanoid";
 
 const Main = () => {
     const [todoText, setTodoText] = useState("")
@@ -55,13 +56,20 @@ const Main = () => {
         <div className="todos border-2 border-gray-300 bg-gray-100 ">
             <div className="bg-gray-300 grid grid-cols-3 px-6 text-center font-semibold py-2">
                 <div className="flex">
-                    <Button onClick={()=>sortToggle()} color={"blue"} text={sort ?  <>Sort &#9650;</> : <>Sort &#9660;</>}/>
-                    <select defaultValue="All" onChange={(e) => setCurrent(e.target.value)}>
+                    <Button
+                        className="bg-blue-400 hover:bg-blue-500 active:bg-blue-600"
+                        onClick={()=>sortToggle()} color={"blue"}
+                        text={sort ?  <>Sort &#9650;</> : <>Sort &#9660;</>}/>
+                    <select
+                        className=" w-37 bg-blue-400 hover:bg-blue-500 active:bg-blue-600 px-5 py-1 rounded mx-1 focus:bg-white focus:text-black"
+                        defaultValue="All"
+                        onChange={(e) => setCurrent(e.target.value)}
+                    >
                         <option value="All">All</option>
                         {
                             todos.map(it => it.category)
                                 .filter((it, ind, arr) => arr.indexOf(it) === ind)
-                                .map(it => <option value={it}>{it}</option>)
+                                .map(it => <option key={nanoid()} value={it}>{it}</option>)
                         }
                     </select>
                 </div>
@@ -69,7 +77,11 @@ const Main = () => {
 
                 <div className="text-center">Todos ({todos.length})</div>
                 <div className="text-right" >
-                    { !!todos.length && <Button onClick={() => deleteAll()} color={"red"} text={"Delete All"}/>}
+                    { !!todos.length && <Button
+                        className="bg-red-400 hover:bg-red-500 active:bg-red-600"
+                        onClick={() => deleteAll()}
+                        color={"red"}
+                        text={"Delete All"}/>}
                 </div>
             </div>
             <div className="flex px-6">
